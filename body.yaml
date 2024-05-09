@@ -80,5 +80,33 @@ content:
           items:
             type: number
             description: The energy can wind turbines produce that hour in (watt)
+        windEnergyAbsorptionFactors:
+          description: The absorption factors for the wind predictions during the programmed day. Represents how reliable a prediction is.
+          type: array
+          items:
+            type: number
+            description: reliability of the prediction that hour.
+        isRevision:
+          type: boolean
+          description: Represents if this is a revision offer or not
+        VProesperaNotExploitable:
+          type: number
+          description: Volume in (m3) of Proespera's tank that can not be exploited.
+        VProesperaDesiredPercent:
+          type: number
+          description: Percentage of Proespera's tank volume wanted to keep for the day after the programmed day.
+        PProesperaMin:
+          type: number
+          description: Technical minimum of Proespera's turbine in (KW).
+        nProesperaT:
+          type: number
+          description: Efficiency of Proespera's turbine (mechanical part).
+        nProesperaG: 
+          type: number
+          description: Efficiency of Proespera's generator.
+        nProesperaTR: 
+          type: number
+          description: Efficiency of Proespera's transformer.
+        
       required:
         - creationReason
