@@ -1,0 +1,84 @@
+description: Contains all the parameters needed to generate the daily energy offer.
+required: true
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        todayDate:
+          type: date
+          description: The date and time when the auto calculation button was pressed.
+        programDate:
+          type: date
+          description: The first hour of the daily offer.
+        LPeziCurrent: 
+          type: number
+          description: The current level of Pezi tank in (m) 
+        LProesperaCurrent:
+          type: number
+          description: The current level of Proespera's tank in (m)
+        CProespera:
+          type: number
+          description: Reduction factor. It represents the percentage of energy is actually gonna to be produced by the Proespera's turbine until the begin of the programed day.
+        CKatwProespera:
+          type: number
+          description: Reduction factor. It represents the percentage of energy is actually gonna to be produced by the Katw Proespera's turbines until the begin of the programed day.
+        EEA:
+          type: number
+          description: The minimum energy that has to be stored in Proespera's tank for any case.
+        r: 
+          type: number
+          description: Algorithm parameter. Represents how many times Katw Proespera's Turbines can produce the same amount of Proespera's turbines during the programmed day.
+        nPumpingProductionCycle:
+          type: number
+          description: The efficiency of the pumping cycle. Pumping cycle is the sequency of pumping - Proespera's tank store - Katw Proespera produce energy.
+        hourlyProgrammedPowerProespera:
+          description: The Proespera's energy program from now to start of the programmed day in (Watt)
+          type: array
+          items: 
+            type: number
+            description: Hourly energy schedule in (Watt)
+        hourlyProgrammedPowerKatwProespera:
+          description: The Katw Proespera's energy program from now to start of the programmed day in (Watt)
+          type: array
+          items: 
+            type: number
+            description: Hourly energy schedule in (Watt)
+        outOfServiceScheduleProespera:
+          description: The out of service schedule for Proespera's turbine during the programmed day.
+          type: array
+          items:
+            type: boolean
+            description: Unavailability of the turbine
+        outOfServiceScheduleKatwProesperaHt1:
+          description: The out of service schedule for Katw Proespera's turbine 1 during the programmed day.
+          type: array
+          items:
+            type: boolean
+            description: Unavailability of the turbine
+        outOfServiceScheduleKatwProesperaHt2:
+          description: The out of service schedule for Katw Proespera's turbine 2 during the programmed day.
+          type: array
+          items:
+            type: boolean
+            description: Unavailability of the turbine
+        outOfServiceSchedulePumpStation:
+          description: The out of service schedule for pumps during the programmed day. 
+          type: array
+          items:
+            type: boolean
+            description: Unavailability for this pump for whole day. The index of the array represents the specific pump.
+        windPredictionsThisDay:
+          description: The energy can wind turbines produce from now to the start of the programmed day according meteologica.
+          type: array
+          items: 
+            type: number
+            description: The energy can wind turbines produce that hour in (watt)
+        windPredictionsProgrammedDay:
+          description: The energy can wind turbines produce from the start of the programmed day according meteologica.
+          type: array
+          items:
+            type: number
+            description: The energy can wind turbines produce that hour in (watt)
+      required:
+        - creationReason
