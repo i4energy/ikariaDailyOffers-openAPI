@@ -1,0 +1,6 @@
+description: The body wan not as expected.
+content:
+  text/plain:
+    schema:
+      type: string
+      example: LPeziCurrent is missing

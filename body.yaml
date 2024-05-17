@@ -86,9 +86,9 @@ content:
           items:
             type: number
             description: reliability of the prediction that hour.
-        isRevision:
-          type: boolean
-          description: Represents if this is a revision offer or not
+        periodA:
+          type: number
+          description: This is the period A offered energy before revision. This property exists only in revision case.
         VProesperaNotExploitable:
           type: number
           description: Volume in (m3) of Proespera's tank that can not be exploited.
@@ -107,6 +107,106 @@ content:
         nProesperaTR: 
           type: number
           description: Efficiency of Proespera's transformer.
+        QHtProesperaNominal:
+          type: number
+          description: The amount of water can pass from Pezi's tank to Proespera's tank in 1s' in (m3/s).
+        kProespera:
+          type: number
+          description: Hydraulic loss factor of Proespera's pipes.
+        separateProductionStatementKatwProespera:
+          type: boolean
+          description: True is setpoint is given to the katw Proespera's turbines separately, false if the setpoint is given to the station.
+        nKatwProesperaT:
+          type: number
+          description: Efficiency of Katw Proespera's turbine (mechanical part).
+        nKatwProesperaG:
+          type: number
+          description: Efficiency of Katw Proespera's generator.
+        nKatwProesperaTR:
+          type: number
+          description: Efficiency of Katw Proespera's transformer.
+        QHtKatwProesperaNominal:
+          type: number
+          description: The amount of water can pass from Proespera's tank to katw Proespera's tank in 1s' in (m3/s).
+        kKatwProespera:
+         type: number
+         description: Hydraulic loss factor of katw Proespera's pipes.
+        PKatwProesperaMin:
+          type: number
+          description: Technical minimum of Katw Proespera's turbine in (KW).
+        nPumpsP:
+          type: number
+          description: Efficiency of the pumps.
+        nPumpsM:
+          type: number
+          description: Efficiency of the motors in pump station.
+        nPumpsTR:
+          type: number
+          description: Efficiency of the transformer in pump station.
+        PInverterMax: 
+          type: number
+          description: The maximum power can an inverter pump consume in one hour in (KW).
+        PConstantSpeedMax:
+          type: number
+          description: The maximum power can a constant speed pump consume in one hour in (KW).
+        outOfServiceScheduleWindTurb1:
+          description: Out of service schedule of wind turbine 1 during the programmed day.
+          type: array
+          items: 
+            type: boolean
+            description: Unavailability of wind turbine 1
+        outOfServiceScheduleWindTurb2:
+          description: Out of service schedule of wind turbine 2 during the programmed day.
+          type: array
+          items: 
+            type: boolean
+            description: Unavailability of wind turbine 2
+        outOfServiceScheduleWindTurb3:
+          description: Out of service schedule of wind turbine 3 during the programmed day.
+          type: array
+          items: 
+            type: boolean
+            description: Unavailability of wind turbine 3
         
       required:
-        - creationReason
+        - todayDate
+        - programDate
+        - LPeziCurrent 
+        - LProesperaCurrent
+        - CProespera
+        - CKatwProespera
+        - EEA
+        - r 
+        - nPumpingProductionCycle
+        - hourlyProgrammedPowerProespera
+        - hourlyProgrammedPowerKatwProespera
+        - outOfServiceScheduleProespera
+        - outOfServiceScheduleKatwProesperaHt1
+        - outOfServiceScheduleKatwProesperaHt2
+        - outOfServiceSchedulePumpStation
+        - windPredictionsThisDay
+        - windPredictionsProgrammedDay
+        - windEnergyAbsorptionFactors
+        - VProesperaNotExploitable
+        - VProesperaDesiredPercent
+        - PProesperaMin
+        - nProesperaT
+        - nProesperaG 
+        - nProesperaTR 
+        - QHtProesperaNominal
+        - kProespera
+        - separateProductionStatementKatwProespera
+        - nKatwProesperaT
+        - nKatwProesperaG
+        - nKatwProesperaTR
+        - QHtKatwProesperaNominal
+        - kKatwProespera
+        - PKatwProesperaMin
+        - nPumpsP
+        - nPumpsM
+        - nPumpsTR
+        - PInverterMax
+        - PConstantSpeedMax
+        - outOfServiceScheduleWindTurb1
+        - outOfServiceScheduleWindTurb2
+        - outOfServiceScheduleWindTurb3
