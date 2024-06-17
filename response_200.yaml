@@ -1,0 +1,36 @@
+description: Correct response from daily offer calculation either. revision or declaration.
+content:
+  text/plain:
+    schema:
+      type: object
+      properties:
+        proesperaProductionStatement: 
+          type: object
+          description: The hourly energy schedule for Proespera Station in (MW)
+        katwProesperaProductionStatement:
+          type: object
+          description: The hourly energy schedule for Katw Proespera Station in (MW)
+        pumpStationDailyEnergySchedule: 
+          type: object
+          description: The hourly energy absorption schedule for Pump station in (MW)
+        proesperaMaxPower:
+          type: number
+          description: The maximum power can proespera turbine produce in one hour in (MW)
+        katwProesperaMaxPower:
+          type: number
+          description: The maximum power can katw Proespera station produce in one hour in (MW)
+        pumpStationMaxPower:
+          type: number
+          description: The maximum power can pump station consume in one hour in (Mw)
+        pumpStationAbsorbedEnergy:
+          type: number
+          description: The energy that pump station will absorb by the network.
+        katwProesperaOfferedEnergy:
+          type: object
+          properties:
+            periodA:
+              type: number
+              description: The hybrid energy for period A in (MW)
+            periodB:
+              type: number
+              description: The hybrid energy for period B in (MW)

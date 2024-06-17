@@ -1,18 +1,31 @@
 openapi: "3.1.0"
 info: 
   title: IKARIA DAILY OFFERS
-  version: 0.0.1
+  version: 0.0.2
   description: >-
     Documentation of Ikaria's daily offers calculator.
   contact: 
     name: Backend Team
   
 servers: 
-  - url: http://localhost:3801/dailyOffer
+  - url: http://localhost:3801/calculate
     description: Local ikaria daily offers servers
 
 paths: 
-  /calculation:
+  /declaration:
+    post: 
+      summary: Calculates the daily energy offer program
+      description: Daily offer is calculated by a lot of parameters that are given in the body.
+      operationId: calculateDailyOffer
+      requestBody: 
+        $ref: "./body.yaml"
+      responses:
+        "200":
+          $ref: "./response_200.yaml"
+        "500":
+          $ref: "./response_500.yaml"
+
+  /revision:
     post: 
       summary: Calculates the daily energy offer program
       description: Daily offer is calculated by a lot of parameters that are given in the body.

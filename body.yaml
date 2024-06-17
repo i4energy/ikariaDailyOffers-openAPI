@@ -5,12 +5,9 @@ content:
     schema:
       type: object
       properties:
-        todayDate:
+        todayDateObject:
           type: date
-          description: The date and time when the auto calculation button was pressed.
-        programDate:
-          type: date
-          description: The first hour of the daily offer.
+          description: Date object - when the calculation button was pressed.
         LPeziCurrent: 
           type: number
           description: The current level of Pezi tank in (m) 
@@ -25,7 +22,7 @@ content:
           description: Reduction factor. It represents the percentage of energy is actually gonna to be produced by the Katw Proespera's turbines until the begin of the programed day.
         EEA:
           type: number
-          description: The minimum energy that has to be stored in Proespera's tank for any case.
+          description: The minimum energy that has to be stored in Proespera's tank for any case in (Watt).
         r: 
           type: number
           description: Algorithm parameter. Represents how many times Katw Proespera's Turbines can produce the same amount of Proespera's turbines during the programmed day.
@@ -33,62 +30,31 @@ content:
           type: number
           description: The efficiency of the pumping cycle. Pumping cycle is the sequency of pumping - Proespera's tank store - Katw Proespera produce energy.
         hourlyProgrammedPowerProespera:
-          description: The Proespera's energy program from now to start of the programmed day in (Watt)
-          type: array
-          items: 
-            type: number
-            description: Hourly energy schedule in (Watt)
+          description: The Proespera's energy schedule in (Watt). Keys are the timestamps of each hour.
+          type: Object
         hourlyProgrammedPowerKatwProespera:
-          description: The Katw Proespera's energy program from now to start of the programmed day in (Watt)
-          type: array
-          items: 
-            type: number
-            description: Hourly energy schedule in (Watt)
+          description: TThe Katw Proespera's energy schedule in (Watt). Keys are the timestamps of each hour.
+          type: Object
         outOfServiceScheduleProespera:
           description: The out of service schedule for Proespera's turbine during the programmed day.
-          type: array
-          items:
-            type: boolean
-            description: Unavailability of the turbine
+          type: Object
         outOfServiceScheduleKatwProesperaHt1:
           description: The out of service schedule for Katw Proespera's turbine 1 during the programmed day.
-          type: array
-          items:
-            type: boolean
-            description: Unavailability of the turbine
+          type: Object
         outOfServiceScheduleKatwProesperaHt2:
-          description: The out of service schedule for Katw Proespera's turbine 2 during the programmed day.
-          type: array
-          items:
-            type: boolean
-            description: Unavailability of the turbine
+          description: Object
         outOfServiceSchedulePumpStation:
           description: The out of service schedule for pumps during the programmed day. 
-          type: array
-          items:
-            type: boolean
-            description: Unavailability for this pump for whole day. The index of the array represents the specific pump.
-        windPredictionsThisDay:
-          description: The energy can wind turbines produce from now to the start of the programmed day according meteologica.
-          type: array
-          items: 
-            type: number
-            description: The energy can wind turbines produce that hour in (watt)
-        windPredictionsProgrammedDay:
-          description: The energy can wind turbines produce from the start of the programmed day according meteologica.
-          type: array
-          items:
-            type: number
-            description: The energy can wind turbines produce that hour in (watt)
+          type: Object
+        windPredictions:
+          description: The wind energy predictions by now to the end of the programmed period in (watt).
+          type: object
         windEnergyAbsorptionFactors:
-          description: The absorption factors for the wind predictions during the programmed day. Represents how reliable a prediction is.
-          type: array
-          items:
-            type: number
-            description: reliability of the prediction that hour.
+          description: The absorption factors for the wind predictions during the programmed period. Represents how reliable a prediction is.
+          type: Object
         periodA:
           type: number
-          description: This is the period A offered energy before revision. This property exists only in revision case.
+          description: This is the period A offered energy before revision. This property exists only in revision case and it must be given in (MW).
         VProesperaNotExploitable:
           type: number
           description: Volume in (m3) of Proespera's tank that can not be exploited.
@@ -113,9 +79,6 @@ content:
         kProespera:
           type: number
           description: Hydraulic loss factor of Proespera's pipes.
-        separateProductionStatementKatwProespera:
-          type: boolean
-          description: True is setpoint is given to the katw Proespera's turbines separately, false if the setpoint is given to the station.
         nKatwProesperaT:
           type: number
           description: Efficiency of Katw Proespera's turbine (mechanical part).
@@ -151,25 +114,15 @@ content:
           description: The maximum power can a constant speed pump consume in one hour in (KW).
         outOfServiceScheduleWindTurb1:
           description: Out of service schedule of wind turbine 1 during the programmed day.
-          type: array
-          items: 
-            type: boolean
-            description: Unavailability of wind turbine 1
+          type: Object
         outOfServiceScheduleWindTurb2:
           description: Out of service schedule of wind turbine 2 during the programmed day.
-          type: array
-          items: 
-            type: boolean
-            description: Unavailability of wind turbine 2
+          type: Object
         outOfServiceScheduleWindTurb3:
           description: Out of service schedule of wind turbine 3 during the programmed day.
-          type: array
-          items: 
-            type: boolean
-            description: Unavailability of wind turbine 3
+          type: Object
         
       required:
-        - todayDate
         - programDate
         - LPeziCurrent 
         - LProesperaCurrent
@@ -184,8 +137,7 @@ content:
         - outOfServiceScheduleKatwProesperaHt1
         - outOfServiceScheduleKatwProesperaHt2
         - outOfServiceSchedulePumpStation
-        - windPredictionsThisDay
-        - windPredictionsProgrammedDay
+        - windPredictions
         - windEnergyAbsorptionFactors
         - VProesperaNotExploitable
         - VProesperaDesiredPercent
@@ -195,7 +147,6 @@ content:
         - nProesperaTR 
         - QHtProesperaNominal
         - kProespera
-        - separateProductionStatementKatwProespera
         - nKatwProesperaT
         - nKatwProesperaG
         - nKatwProesperaTR
