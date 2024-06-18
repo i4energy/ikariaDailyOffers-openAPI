@@ -108,10 +108,10 @@ content:
           description: Efficiency of the transformer in pump station.
         PInverterMax: 
           type: number
-          description: The maximum power can an inverter pump consume in one hour in (KW).
+          description: The maximum power can an inverter pump consume in one hour in (W).
         PConstantSpeedMax:
           type: number
-          description: The maximum power can a constant speed pump consume in one hour in (KW).
+          description: The maximum power can a constant speed pump consume in one hour in (W).
         outOfServiceScheduleWindTurb1:
           description: Out of service schedule of wind turbine 1 during the programmed day.
           type: Object

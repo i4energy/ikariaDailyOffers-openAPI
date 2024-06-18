@@ -10,7 +10,7 @@ content:
         katwProesperaProductionStatement:
           type: object
           description: The hourly energy schedule for Katw Proespera Station in (MW)
-        pumpStationDailyEnergySchedule: 
+        pumpStationAbsorbedEnergyDistribution: 
           type: object
           description: The hourly energy absorption schedule for Pump station in (MW)
         proesperaMaxPower:
